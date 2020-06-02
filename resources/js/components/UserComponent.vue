@@ -6,24 +6,41 @@
                     <div class="card-header">Example Component</div>
 
                     <div class="card-body">
-                        I'm an example component. <br>
-                        <br>
+                        I'm an example component.
+                        <div class="roledetail">
+                            ID: {{ id }}<br>
+                            Name: {{ name }}<br>
+                            Role: {{ role }}<br>
+                        </div>
                         <button v-on:click="axiosLogout">logout</button>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 </template>
 
+<style scoped>
+    .roledetail {
+        color: red;
+        font-size: 4vw;
+    }
+
+</style>
+
 <script>
     export default {
         props: {
+            id: String,
+            name: String,
+            role: String,
             logout: String,
         },
 
         mounted() {
             console.log('ExampleComponent mounted.')
+            console.log('name: ' + this.name)
         },
 
         methods: {
@@ -32,6 +49,7 @@
                     .then(function (response) {
                         console.log(response)
                     }.bind(this))
+
                     .catch(function (error) {
                         console.log(error)
                         if (error.response) {

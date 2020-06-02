@@ -30,7 +30,13 @@
 
 <body>
     <div id="app">
-        <example-component logout="{{ route('logout') }}"></example-component>
+        @can('admin')
+        <admin-component id="{{ Auth::user()->id }}" name="{{ Auth::user()->name }}" role="{{ Auth::user()->role }}"
+            logout="{{ route('logout') }}"></admin-component>
+        @else
+        <user-component id="{{ Auth::user()->id }}" name="{{ Auth::user()->name }}" role="{{ Auth::user()->role }}"
+            logout="{{ route('logout') }}"></user-component>
+        @endcan
     </div>
     <script src=" {{ mix('js/app.js') }} "></script>
 </body>
