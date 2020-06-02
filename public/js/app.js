@@ -49372,10 +49372,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        logout: String
+    },
+
     mounted: function mounted() {
-        console.log('Component mounted.');
+        console.log('ExampleComponent mounted.');
+    },
+
+
+    methods: {
+        axiosLogout: function axiosLogout() {
+            axios.post(this.logout).then(function (response) {
+                console.log(response);
+            }.bind(this)).catch(function (error) {
+                console.log(error);
+                if (error.response) {
+                    if (error.response.status) {
+                        if (error.response.status == 401 || error.response.status == 419) {
+                            var parser = new URL(this.logout);
+                            location.href = parser.origin;
+                        }
+                    }
+                }
+            }.bind(this));
+        }
     }
 });
 
@@ -49387,32 +49412,28 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card card-default" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _vm._v("Example Component")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _vm._v("\n                    I'm an example component. "),
+            _c("br"),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
+            _c("br"),
+            _vm._v(" "),
+            _c("button", { on: { click: _vm.axiosLogout } }, [_vm._v("logout")])
           ])
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
