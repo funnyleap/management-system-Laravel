@@ -19,5 +19,11 @@
         "popper.js": "^1.12",
         "vue": "^2.5.7",
         "imagemin-pngquant": "5.0.1"
+    },
+    "dependencies": {
+        "css-loader": "^3.5.3",
+        "material-design-icons-iconfont": "^5.0.1",
+        "vue-router": "^3.3.2",
+        "vuetify": "^1.2.9"
     }
 }
