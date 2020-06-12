@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Hash;
 $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'login_id' => $faker->unique()->safeEmail,
+        'login_id' => $faker->unique()->safeEmail . mt_rand(1, 999999),
         'password' => Hash::make('password'),
         'role' => 3,
         'remember_token' => str_random(10),
