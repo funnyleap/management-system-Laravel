@@ -22,3 +22,13 @@ Route::post('/login', 'Auth\LoginController@login');
 // ログアウト
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
+// Admin
+Route::group(['middleware' => ['auth', 'can:admin']], function () {
+    // USER
+    Route::post('/api/admin/user', 'UserController@index')->name('admin/user');
+});
+
+// other
+Route::get('/{any}', function () {
+    return view('home');
+})->middleware('auth')->where('any', '.*');

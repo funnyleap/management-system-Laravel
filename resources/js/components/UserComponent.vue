@@ -53,11 +53,9 @@
                     .catch(function (error) {
                         console.log(error)
                         if (error.response) {
-                            if (error.response.status) {
-                                if (error.response.status == 401 || error.response.status == 419) {
-                                    var parser = new URL(this.logout)
-                                    location.href = parser.origin
-                                }
+                            if (error.response.status == 401 || error.response.status == 419) {
+                                var parser = new URL(this.logout)
+                                location.href = parser.origin
                             }
                         }
                     }.bind(this))
